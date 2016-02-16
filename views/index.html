@@ -1,3 +1,232 @@
 <div class="container">
-    Prototype Index Page Here
+    <div class="well well-sm">
+                <form class="form-inline clearfix">
+
+                    <div class="form-group">
+                        <label class="control-label" for="optionList">Sort By</label>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="dropdown" id="optionList">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="Button3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                Option 1 
+                               
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li><a href="#">Option 1</a></li>
+                                <li><a href="#">Option 2</a></li>
+                                <li><a href="#">Option 3</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#sectionFilter" aria-expanded="false" aria-controls="sectionFilter"><i class="fa fa-filter"></i>Filter</button>
+                    </div>
+
+
+                    
+
+                        <div class="form-group pull-right">
+                            <button class="btn btn-primary" type="button" data-backdrop="static" data-toggle="modal" data-target="#3StepWizardModal">
+                                Add Agent
+                            </button>
+                            
+                        </div>
+                        <div class="form-group pull-right">
+                            <button class="btn btn-default" type="button" id="dropdownMenu1">
+                                Change Platform Default
+                            </button>                            
+                        </div>
+                    
+                </form>
+            </div>
+            <form id="sectionFilter" class="collapse">
+                <div class="well form-horizontal">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="sampleInput1" class="col-sm-4 control-label text-left">Field 1</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="sampleInput1" placeholder="Filter Value" ng-model="data.filter1">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="sampleInput2" class="col-sm-4 control-label text-left">Field 2</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="sampleInput2" placeholder="Filter Value" ng-model="data.filter2">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <ul class="list-unstyled list-inline text-right">
+                                <li>
+                                    <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#sectionFilter">Close</button>
+                                </li>
+                                <li>
+                                    <button type="button" class="btn btn-default" ng-click="actions.clearFilters()">Clear Filters</button>
+                                </li>
+                                <li>
+                                    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#sectionFilter" ng-click="actions.updateFilter()">Apply Filters</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div ng-if="data.filterItems.length > 0">
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <ul class="list-unstyled list-inline">
+                            <li>
+                                <label>Filters </label>
+                            </li>
+                            <li ng-repeat="filter in data.filterItems">
+                                <button type="button" class="btn btn-xs btn-primary" ng-click="actions.removeFilter(filter)"> <i class="fa fa-times-circle"></i></button></li>
+                            <li>
+                                <button type="button" class="btn btn-link btn-xs" ng-click="actions.clearFilters()">Clear Filters</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="horizontal-divider"></div>
+                <br />
+            </div>
+
+            <table class="table table-responsive table-hover" st-table="data.listItems">
+    <thead>
+        <tr>
+            <th>
+                <input cs-select-all="data.listItems" type="checkbox" /></th>
+            <th st-sort="'column1'">ID</th>
+            <th st-sort="'column2'">Name</th>
+            <th st-sort="'column3'">URL</th>
+            <th st-sort="'column4'">Status</th>
+            <th st-sort="'column4'">Scope</th>
+            <th st-sort="'column4'">Type</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="row in tableData">
+            <td>
+                <input type="checkbox" cs-select="listItem" /></td>
+            <td>{{ row.id }}</td>
+            <td><a ng-click="showDetails(row)">{{ row.name }}</a></td>
+            <td>{{ row.url }}</td>
+            <td>{{ row.status }}</td>
+            <td>{{ row.scope }}</td>
+            <td>{{ row.type }}</td>
+            <td class="text-right">
+                <ul class="list-unstyled list-inline list-nomargin">
+                    <li>
+                        <div class="dropdown">
+                            <span class="dropdown-toggle" id="Button1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <span>Actions</span>
+                                <span class="caret"></span>
+                            </span>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Test Connection</a></li>
+                                <li><a ng-click="showDetails(row)">View Details</a></li>
+                                <li><a href="#">Associate to Service</a></li>
+                                <li><a href="#">Remove Agent</a></li>
+                            </ul>
+                        </div>
+                    </li>
+
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- Delete confirmation Modal -->
+<div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="confirmationModalLabel">Delete Confirmation</h4>
+            </div>
+            <div class="modal-body">
+                <p>Confirmation Text Here</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit  Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="editModalLabel">Edit Item</h4>
+            </div>
+            <div class="modal-body">
+                <p>Edit Form Here</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- 3 Step Wizard Modal -->
+<div class="modal fade" id="3StepWizardModal" tabindex="-1" role="dialog" aria-labelledby="3StepWizardModalLabel" aria-hidden="true" ng-init="currentStep3Step = 1">
+    <div class="modal-dialog modal-lg modal-wizard">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="3StepWizardModalLabel">Add Agent</h3>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-9">
+                        <div id="3StepWizardStep1" ng-show="currentStep == 1" ng-init="currentStep = 1">
+                            <h2 class="step-title text-primary">Select Agent Type</h2>
+                            <p>Agent Type Selection</p>
+                        </div>
+                        <div id="3StepWizardStep2" ng-show="currentStep == 2">
+                            <h2 class="step-title text-primary">Supply Agent Credentials</h2>
+                            <p>Agent Connection Credentials</p>
+                        </div>
+                        <div id="3StepWizardStep3" ng-show="currentStep == 3">
+                            <h2 class="step-title text-primary">Review Agent</h2>
+                            <p>Agent Review</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default text-primary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-default text-primary" ng-class="{disabled: currentStep == 1}" ng-click="currentStep = currentStep - 1"><i class="fa fa-chevron-left"></i>&nbsp;Back</button>
+                <button type="button" class="btn btn-primary" ng-class="{disabled: currentStep == 3}" ng-click="currentStep = currentStep + 1" ng-show="currentStep != 3">Next&nbsp;<i class="fa fa-chevron-right"></i></button>
+                <button type="button" class="btn btn-primary" ng-class="{disabled: currentStep != 3}" data-dismiss="modal" ng-show="currentStep == 3">Add Agent</button>
+            </div>
+        </div>
+    </div>
+</div>
 </div>

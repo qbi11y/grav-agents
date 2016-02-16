@@ -11,9 +11,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
             controller: 'IndexController'
         })
 
-        .state('view1', {
-            url: '/view1',
-            templateUrl: 'views/view1.html',
-            controller: 'ViewController'
+        .state('details', {
+            url: '/details/:id',
+            templateUrl: 'views/details.html',
+            controller: 'DetailsController'
         })
 });

@@ -1,0 +1,224 @@
+<div class="container">
+	<div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-12">
+                      <div class="row">
+                <div class="col-md-12">
+                    <ul class="list-inline">
+                        <li><a ui-sref="index">Home</a></li>
+                        <li>{{ details.name }}</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="page-header">{{ details.name }}<small> Details</small></h1>
+                    <!--<h4 class="page-sub-header">List Item Information</h4>-->
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6"><label>Date Created</label></div>
+                        <div class="col-xs-6 col-md-6">Value</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6"><label>Created By</label></div>
+                        <div class="col-xs-6 col-md-6">Value</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6"><label>Last Modified</label></div>
+                        <div class="col-xs-6 col-md-6">Value</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6"><label>Last Modified By</label></div>
+                        <div class="col-xs-6 col-md-6">Value</div>
+                    </div>
+                </div>
+                <div class="col-md-4 text-right">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-default dropdown-toggle btn-block" data-toggle="dropdown" aria-expanded="false">
+                        Test Connection
+                      </button>
+                	</div> 
+                	<div class="btn-group">
+                      <button type="button" class="btn btn-default dropdown-toggle btn-block" data-toggle="dropdown" aria-expanded="false">
+                        Reload Configurations
+                      </button>
+                	</div>                        
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <h3 class="section-header"></h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4>General Parameters</h4>
+                            <div class="row">
+                                <div class="col-xs-6 col-md-6"><label>ID</label></div>
+                                <div class="col-xs-6 col-md-6">Value</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6 col-md-6"><label>Status</label></div>
+                                <div class="col-xs-6 col-md-6">Value</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6 col-md-6"><label>URL</label></div>
+                                <div class="col-xs-6 col-md-6">Value</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6 col-md-6"><label>Authentication</label></div>
+                                <div class="col-xs-6 col-md-6">Value</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6 col-md-6"><label>Description</label></div>
+                                <div class="col-xs-6 col-md-6">Value</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6 col-md-6"><label>Fulfillment Method</label></div>
+                                <div class="col-xs-6 col-md-6">Value</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>Endpoint</h4>
+                            <div class="row">
+                                <div class="col-xs-6 col-md-6"><label>Endpoint</label></div>
+                                <div class="col-xs-6 col-md-6">Value</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6 col-md-6"><label>URL</label></div>
+                                <div class="col-xs-6 col-md-6">Value</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6 col-md-6"><label>Login Name</label></div>
+                                <div class="col-xs-6 col-md-6">Value</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6 col-md-6"><label>Password</label></div>
+                                <div class="col-xs-6 col-md-6">Value</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <h3 class="section-header">Operations</h3>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4>Destroy</h4>
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12">
+                                	<table class="table table-responsive table-hover" st-table="data.listItems">
+									    <thead>
+									        <tr>
+									            <th st-sort="'column1'">Name</th>
+									            <th st-sort="'column2'">Label</th>
+									            <th st-sort="'column3'">Type</th>
+									        </tr>
+									    </thead>
+									    <tbody>
+									        <tr ng-repeat="listItem in data.listItems">
+									            <td>
+									                <input type="checkbox" cs-select="listItem" ng-model="listItem.isSelected" /></td>
+									            <td></td>
+									            <td></td>
+									            <td></td>
+									            <td></td>
+									            
+									        </tr>
+									    </tbody>
+									</table>
+                                </div>
+                            </div>
+                            <h4>Create</h4>
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12">
+                                	<table class="table table-responsive table-hover" st-table="data.listItems">
+									    <thead>
+									        <tr>
+									            <th st-sort="'column1'">Name</th>
+									            <th st-sort="'column2'">Label</th>
+									            <th st-sort="'column3'">Type</th>
+									        </tr>
+									    </thead>
+									    <tbody>
+									        <tr ng-repeat="listItem in data.listItems">
+									            <td>
+									                <input type="checkbox" cs-select="listItem" ng-model="listItem.isSelected" /></td>
+									            <td></td>
+									            <td></td>
+									            <td></td>
+									            <td></td>
+									            
+									        </tr>
+									    </tbody>
+									</table>
+                                </div>
+                            </div>
+                            <h4>Status</h4>
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12">
+                                	<table class="table table-responsive table-hover" st-table="data.listItems">
+									    <thead>
+									        <tr>
+									            <th st-sort="'column1'">Name</th>
+									            <th st-sort="'column2'">Label</th>
+									            <th st-sort="'column3'">Type</th>
+									        </tr>
+									    </thead>
+									    <tbody>
+									        <tr ng-repeat="listItem in data.listItems">
+									            <td>
+									                <input type="checkbox" cs-select="listItem" ng-model="listItem.isSelected" /></td>
+									            <td></td>
+									            <td></td>
+									            <td></td>
+									            <td></td>
+									            
+									        </tr>
+									    </tbody>
+									</table>
+                                </div>
+                            </div>
+                            <h4>Log</h4>
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12">
+                                	<table class="table table-responsive table-hover" st-table="data.listItems">
+									    <thead>
+									        <tr>
+									            <th st-sort="'column1'">Name</th>
+									            <th st-sort="'column2'">Label</th>
+									            <th st-sort="'column3'">Type</th>
+									        </tr>
+									    </thead>
+									    <tbody>
+									        <tr ng-repeat="listItem in data.listItems">
+									            <td>
+									                <input type="checkbox" cs-select="listItem" ng-model="listItem.isSelected" /></td>
+									            <td></td>
+									            <td></td>
+									            <td></td>
+									            <td></td>
+									            
+									        </tr>
+									    </tbody>
+									</table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
