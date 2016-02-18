@@ -1,4 +1,5 @@
 <div class="container">
+	<h1 class="page-header">List of Service Fulfillment Agents</h1>
     <div class="well well-sm">
                 <form class="form-inline clearfix">
 
@@ -32,10 +33,7 @@
 
                     <div class="form-group">
                         <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#sectionFilter" aria-expanded="false" aria-controls="sectionFilter"><i class="fa fa-filter"></i>Filter</button>
-                    </div>
-
-
-                    
+                    </div>            
 
                         <div class="form-group pull-right">
                             <button class="btn btn-primary" type="button" data-backdrop="static" data-toggle="modal" data-target="#3StepWizardModal">
@@ -107,12 +105,10 @@
                 <div class="horizontal-divider"></div>
                 <br />
             </div>
-
+			<div style="background-color: white; border-radius: 6px; padding: 30px;">
             <table class="table table-responsive table-hover" st-table="data.listItems">
     <thead>
         <tr>
-            <th>
-                <input cs-select-all="data.listItems" type="checkbox" /></th>
             <th st-sort="'column1'">ID</th>
             <th st-sort="'column2'">Name</th>
             <th st-sort="'column3'">URL</th>
@@ -124,8 +120,7 @@
     </thead>
     <tbody>
         <tr ng-repeat="row in tableData">
-            <td>
-                <input type="checkbox" cs-select="listItem" /></td>
+            
             <td>{{ row.id }}</td>
             <td><a ng-click="showDetails(row)">{{ row.name }}</a></td>
             <td>{{ row.url }}</td>
@@ -154,6 +149,7 @@
         </tr>
     </tbody>
 </table>
+</div>
 
 <!-- Delete confirmation Modal -->
 <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
@@ -205,25 +201,76 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-xs-9">
-                        <div id="3StepWizardStep1" ng-show="currentStep == 1" ng-init="currentStep = 1">
+                        <div id="3StepWizardStep1" ng-show="currentStep == 1">
                             <h2 class="step-title text-primary">Select Agent Type</h2>
-                            <p>Agent Type Selection</p>
+                            <p>Select the Agent creation method</p>
+                            <div class="form-group">
+	                            <input type="text" class="form-control" placeholder="Enter Name">
+	                        </div>
+
+                            <div class="form-group">
+                            	<select class="form-control" ng-model="creation" ng-init="creation = '0'">
+	                            	<option value="0">Select Agent Type</option>
+	                            	<option value="pre">Preprovisioning</option>
+	                            	<option value="post">Postprovisioning</option>
+	                            	<option value="pro">Provisioning</option>
+	                            </select>
+                        </div>
+                            <div>
+                            <div class="radio">
+  <label>
+    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+    REST
+  </label>
+</div>
+<div class="radio">
+  <label>
+    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" ng-class="{disabled: creation != 'pro' }">
+    Send E-mail
+  </label>
+</div></div>
                         </div>
                         <div id="3StepWizardStep2" ng-show="currentStep == 2">
                             <h2 class="step-title text-primary">Supply Agent Credentials</h2>
-                            <p>Agent Connection Credentials</p>
+                            <p>Please provide a valid URL and select an authentication scheme to enter credentials</p>
+                            <div>
+                           	<input class="form-control" type="text" placeholder="Enter URL">
+                            <div class="radio">
+							  <label>
+							    <input type="radio" name="optionsRadios" id="optionsRadios1" value="api" checked ng-model="auth">
+							    API
+							  </label>
+							</div>
+							<div ng-if="auth == 'api'"><input class="form-control" type="text" placeholder="Enter API Key"></div>
+							<div class="radio">
+							  <label>
+							    <input type="radio" name="optionsRadios" id="optionsRadios2" value="pw" ng-model="auth">
+							    Username/Password
+							  </label>
+							</div>
+							<div ng-if="auth == 'pw'">
+								<div class="form-group">
+									<input class="form-control" type="text" placeholder="Enter Username">
+								</div>
+								<div class="form-group">
+									<input class="form-control" type="text" placeholder="Enter Password">
+								</div>
+							</div>
+						</div>
+                            
                         </div>
                         <div id="3StepWizardStep3" ng-show="currentStep == 3">
-                            <h2 class="step-title text-primary">Review Agent</h2>
-                            <p>Agent Review</p>
+                            <h2 class="step-title text-primary">Review Agent Details</h2>
+                            <p ng-if="loadingData"><i class="fa fa-spinner fa-pulse"></i> Retrieving Agent Data</p>
+                            <p ng-if="!loadingData">Agent Review</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default text-primary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-default text-primary" ng-class="{disabled: currentStep == 1}" ng-click="currentStep = currentStep - 1"><i class="fa fa-chevron-left"></i>&nbsp;Back</button>
-                <button type="button" class="btn btn-primary" ng-class="{disabled: currentStep == 3}" ng-click="currentStep = currentStep + 1" ng-show="currentStep != 3">Next&nbsp;<i class="fa fa-chevron-right"></i></button>
+                <button type="button" class="btn btn-default text-primary" ng-class="{disabled: currentStep == 1}" ng-click="updateWizard('back')"><i class="fa fa-chevron-left"></i>&nbsp;Back</button>
+                <button type="button" class="btn btn-primary" ng-class="{disabled: currentStep == 3}" ng-click="updateWizard('next')" ng-show="currentStep != 3">Next&nbsp;<i class="fa fa-chevron-right"></i></button>
                 <button type="button" class="btn btn-primary" ng-class="{disabled: currentStep != 3}" data-dismiss="modal" ng-show="currentStep == 3">Add Agent</button>
             </div>
         </div>

@@ -15,9 +15,9 @@ app.factory('Data', function() {
 
         getTable: function() {
         	return [
-        		{id: 1, name: 'Agent 1 Name', url: 'agentURL', status: 'active', scope: 'scope', type: 'fulfillment'},
-        		{id: 2, name: 'Agent 2 Name', url: 'agentURL', status: 'active', scope: 'scope', type: 'pre-provisioning'},
-        		{id: 3, name: 'Agent 3 Name', url: 'agentURL', status: 'inactive', scope: 'scope', type: 'post-provisioning'}];
+        		{id: 1, name: 'Blueprint Agent', url: 'http://10.201.193.247:8080/blueprint-agent', status: 'active', scope: 'Broker', type: 'fulfillment'},
+        		{id: 2, name: 'ServiceNow Agent', url: 'http://10.201.193.247:8080/servicenow-agent', status: 'active', scope: 'Broker', type: 'pre-provisioning'},
+        		{id: 3, name: 'email-agent', url: 'http://10.201.193.247:8080/email-agent', status: 'inactive', scope: 'Broker', type: 'post-provisioning'}];
         },
 
         setAgentDetails: function(a) {
